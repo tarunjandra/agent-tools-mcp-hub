@@ -25,6 +25,7 @@ Building AI agents requires connecting them to real-world APIs, tools, and datab
 | :--- | :--- | :--- | :---: | :--- |
 | [`duckduckgo_search`](tools/duckduckgo_search/) | Search & Web | Python | ✅ | Instant internet search tool using DuckDuckGo HTML/API |
 | [`wikipedia_search`](tools/wikipedia_search/) | Search & Web | Python | ✅ | Fetch clean article extracts and summaries from Wikipedia |
+| [`arxiv_search`](tools/arxiv_search/) | Search & Web | Python | ✅ | Search arXiv papers by topic and return titles, authors, abstracts, and PDFs |
 | [`crypto_price_checker`](tools/crypto_price_checker/) | Finance | Python | ✅ | Live cryptocurrency prices, 24h market trends & market caps |
 | [`slack_notifier`](tools/slack_notifier/) | Communication | Python | ✅ | Send structured alert blocks and updates to Slack channels |
 | [`jwt_decoder`](tools/jwt_decoder/) | Utilities | Python | ✅ | Decode JWT tokens and inspect headers & payloads |

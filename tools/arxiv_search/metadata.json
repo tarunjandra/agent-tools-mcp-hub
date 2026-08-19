@@ -1,0 +1,28 @@
+{
+  "name": "arxiv_search",
+  "display_name": "ArXiv Research Paper Search",
+  "description": "Searches the arXiv API by topic and returns paper titles, authors, abstracts, and PDF links. No API key required.",
+  "category": "Search & Web",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "gitvishal96",
+    "github": "gitvishal96"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Research topic or search query (e.g. graph neural networks, quantum computing)"
+      },
+      "max_results": {
+        "type": "integer",
+        "description": "Maximum number of papers to return (1-25, default 5)",
+        "default": 5
+      }
+    },
+    "required": ["query"]
+  },
+  "env_vars": []
+}
