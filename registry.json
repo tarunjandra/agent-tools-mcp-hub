@@ -1,5 +1,5 @@
 {
-  "total_tools": 4,
+  "total_tools": 5,
   "tools": [
     {
       "name": "crypto_price_checker",
@@ -61,6 +61,38 @@
         ]
       },
       "env_vars": []
+    },
+    {
+      "name": "rss_feed_reader",
+      "display_name": "RSS & Atom Feed Reader",
+      "description": "Fetch and parse RSS 2.0 and Atom feeds, returning structured article entries with title, link, summary, author, and publication timestamp.",
+      "category": "Search & Web",
+      "language": "python",
+      "mcp_compatible": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "feed_url": {
+            "type": "string",
+            "description": "URL of the RSS 2.0 or Atom feed"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of feed items to return (default: 5)"
+          },
+          "timeout_seconds": {
+            "type": "integer",
+            "description": "HTTP request timeout in seconds (default: 10)"
+          }
+        },
+        "required": [
+          "feed_url"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "description": "Parsed feed metadata containing channel title, description, article items, item count, and status"
+      }
     },
     {
       "name": "slack_notifier",
