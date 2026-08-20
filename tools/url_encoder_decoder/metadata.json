@@ -1,0 +1,20 @@
+{
+  "name": "url_encoder_decoder",
+  "display_name": "URL & Query Parameter Encoder/Decoder",
+  "description": "Encode or decode URLs, URI components, and query strings safely.",
+  "category": "Utilities",
+  "language": "python",
+  "mcp_compatible": true,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "text": { "type": "string", "description": "String or URL to process" },
+      "action": { "type": "string", "description": "'encode' or 'decode' (default: encode)" }
+    },
+    "required": ["text"]
+  },
+  "returns": {
+    "type": "object",
+    "description": "Encoded or decoded string result"
+  }
+}
