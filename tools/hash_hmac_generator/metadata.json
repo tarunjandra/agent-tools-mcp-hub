@@ -1,0 +1,21 @@
+{
+  "name": "hash_hmac_generator",
+  "display_name": "Cryptographic Hash & HMAC Generator",
+  "description": "Compute cryptographic hashes (MD5, SHA1, SHA256, SHA512) and HMAC signatures for text or binary strings.",
+  "category": "Utilities",
+  "language": "python",
+  "mcp_compatible": true,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "text": { "type": "string", "description": "Input text to hash" },
+      "algorithm": { "type": "string", "description": "Hash algorithm: sha256, sha512, sha1, md5 (default: sha256)" },
+      "key": { "type": "string", "description": "Secret key for HMAC signature (optional)" }
+    },
+    "required": ["text"]
+  },
+  "returns": {
+    "type": "object",
+    "description": "Calculated hash hex digest and metadata"
+  }
+}
