@@ -1,0 +1,27 @@
+{
+  "name": "weather_api",
+  "display_name": "Open-Meteo Weather API",
+  "description": "A tool to fetch current weather data for a specific location using the keyless Open-Meteo API.",
+  "category": "Weather",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "Antigravity Agent",
+    "github": "tarunjandra"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "latitude": {
+        "type": "number",
+        "description": "Geographical WGS84 latitude coordinate (e.g., 51.5074)"
+      },
+      "longitude": {
+        "type": "number",
+        "description": "Geographical WGS84 longitude coordinate (e.g., -0.1278)"
+      }
+    },
+    "required": ["latitude", "longitude"]
+  },
+  "env_vars": []
+}
