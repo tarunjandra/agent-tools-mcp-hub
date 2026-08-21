@@ -1,0 +1,21 @@
+{
+  "name": "json_yaml_converter",
+  "display_name": "JSON <-> YAML Format Converter",
+  "description": "Convert data between JSON and YAML formats with syntax validation and indentation formatting.",
+  "category": "Utilities",
+  "language": "python",
+  "mcp_compatible": true,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "content": { "type": "string", "description": "Input string in JSON or YAML format" },
+      "target_format": { "type": "string", "description": "'yaml' or 'json' (default: yaml)" },
+      "indent": { "type": "integer", "description": "Indentation spacing (default: 2)" }
+    },
+    "required": ["content"]
+  },
+  "returns": {
+    "type": "object",
+    "description": "Converted string output and parse metadata"
+  }
+}
