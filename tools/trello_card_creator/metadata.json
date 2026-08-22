@@ -1,0 +1,38 @@
+{
+  "name": "trello_card_creator",
+  "display_name": "Trello Card Creator",
+  "description": "Create task cards in specified Trello lists using the Trello REST API.",
+  "category": "Developer Tools",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "ImpactEngineer87",
+    "github": "ImpactEngineer87"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Title or name of the Trello card"
+      },
+      "list_id": {
+        "type": "string",
+        "description": "ID of the Trello list where the card should be created"
+      },
+      "description": {
+        "type": "string",
+        "description": "Optional description for the Trello card",
+        "default": ""
+      }
+    },
+    "required": [
+      "query",
+      "list_id"
+    ]
+  },
+  "env_vars": [
+    "TRELLO_API_KEY",
+    "TRELLO_TOKEN"
+  ]
+}

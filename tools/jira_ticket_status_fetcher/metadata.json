@@ -1,0 +1,29 @@
+{
+  "name": "jira_ticket_status_fetcher",
+  "display_name": "Jira Ticket Status Fetcher",
+  "description": "Fetch the status, summary, and description of a Jira ticket using the Jira Cloud REST API.",
+  "category": "Developer Tools",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "ImpactEngineer87",
+    "github": "ImpactEngineer87"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Jira issue key, for example PROJ-123"
+      }
+    },
+    "required": [
+      "query"
+    ]
+  },
+  "env_vars": [
+    "JIRA_BASE_URL",
+    "JIRA_EMAIL",
+    "JIRA_API_TOKEN"
+  ]
+}

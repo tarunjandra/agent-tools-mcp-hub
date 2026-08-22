@@ -1,0 +1,23 @@
+{
+  "name": "twitter-x-post-creator-ts",
+  "version": "1.0.0",
+  "description": "Create text posts using the X API v2.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "twitter",
+    "x",
+    "api",
+    "typescript",
+    "mcp"
+  ],
+  "author": "ImpactEngineer87",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}

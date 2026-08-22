@@ -1,0 +1,29 @@
+{
+  "name": "crewai_wrapper_demo",
+  "display_name": "CrewAI Wrapper Demo",
+  "description": "Adapts any tool in this hub into a CrewAI tool automatically, generating a Pydantic args_schema from the tool's metadata.json and calling its run_tool(). Wraps a single tool or the entire catalogue, and reports what CrewAI tool a given hub tool would produce.",
+  "category": "Documentation",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "Ammar Khan",
+    "github": "ammarhere02"
+  },
+  "version": "1.0.0",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tool_name": {
+        "type": "string",
+        "description": "Folder name of the hub tool to inspect, e.g. 'jwt_decoder'"
+      },
+      "tools_dir": {
+        "type": "string",
+        "description": "Path to the hub's tools directory",
+        "default": "tools"
+      }
+    },
+    "required": ["tool_name"]
+  },
+  "env_vars": []
+}

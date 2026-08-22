@@ -1,0 +1,48 @@
+{
+  "name": "redis_key_value_store",
+  "display_name": "Redis Key-Value Store",
+  "description": "Get and set cached values in a Redis instance with optional TTL expiration.",
+  "category": "Database",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "ImpactEngineer87",
+    "github": "ImpactEngineer87"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Redis key"
+      },
+      "action": {
+        "type": "string",
+        "description": "Redis operation to perform: get or set",
+        "enum": [
+          "get",
+          "set"
+        ],
+        "default": "get"
+      },
+      "value": {
+        "type": "string",
+        "description": "Value to store when action is set"
+      },
+      "ttl": {
+        "type": "integer",
+        "description": "Optional expiration time in seconds when action is set"
+      }
+    },
+    "required": [
+      "query"
+    ]
+  },
+  "env_vars": [
+    "REDIS_HOST",
+    "REDIS_PORT",
+    "REDIS_PASSWORD",
+    "REDIS_DB",
+    "REDIS_SSL"
+  ]
+}

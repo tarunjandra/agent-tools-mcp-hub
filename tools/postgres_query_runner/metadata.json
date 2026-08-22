@@ -1,0 +1,52 @@
+{
+  "name": "postgres_query_runner",
+  "display_name": "PostgreSQL Read-Only Query Tool",
+  "description": "Execute parameterized, read-only SQL queries against a PostgreSQL database using psycopg2, with query validation, session-level read-only enforcement, and structured tabular results.",
+  "category": "database",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "Dobrivoje",
+    "github": "dobrivoje0101"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "SQL query to execute. Must start with SELECT, WITH, EXPLAIN, SHOW, or TABLE"
+      },
+      "params": {
+        "type": "array",
+        "description": "Optional list of positional parameters for parameterized SQL execution",
+        "items": {}
+      },
+      "connection_string": {
+        "type": "string",
+        "description": "Optional PostgreSQL DSN/connection string. Falls back to POSTGRES_DSN, DATABASE_URL, or POSTGRES_HOST/PORT/DB/USER/PASSWORD environment variables"
+      },
+      "max_rows": {
+        "type": "integer",
+        "description": "Maximum number of rows to return (default: 100)"
+      },
+      "statement_timeout_ms": {
+        "type": "integer",
+        "description": "Server-side statement timeout in milliseconds (default: 5000)"
+      }
+    },
+    "required": ["query"]
+  },
+  "returns": {
+    "type": "object",
+    "description": "Query execution result containing columns, rows as key-value objects, row_count, execution_time_ms, and status"
+  },
+  "env_vars": [
+    "POSTGRES_DSN",
+    "DATABASE_URL",
+    "POSTGRES_HOST",
+    "POSTGRES_PORT",
+    "POSTGRES_DB",
+    "POSTGRES_USER",
+    "POSTGRES_PASSWORD"
+  ]
+}

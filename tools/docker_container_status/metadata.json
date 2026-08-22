@@ -1,0 +1,38 @@
+{
+  "name": "docker_container_status",
+  "display_name": "Docker Container Status Checker",
+  "description": "Queries the local Docker daemon and reports container status, healthcheck state, uptime, restart count, published ports and live resource statistics including CPU percentage, real memory usage, network and block I/O, and PID count. Read-only: never starts, stops or removes containers.",
+  "category": "Developer Tools",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "Ammar Khan",
+    "github": "ammarhere02"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "container": {
+        "type": "string",
+        "description": "Name or ID of a single container to inspect. Omit to report all containers."
+      },
+      "all_containers": {
+        "type": "boolean",
+        "description": "Include stopped containers as well as running ones",
+        "default": false
+      },
+      "include_stats": {
+        "type": "boolean",
+        "description": "Collect CPU, memory, network and I/O statistics for running containers",
+        "default": true
+      },
+      "limit": {
+        "type": "integer",
+        "description": "Maximum number of containers to report (1-200)",
+        "default": 25
+      }
+    },
+    "required": []
+  },
+  "env_vars": []
+}

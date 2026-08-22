@@ -1,5 +1,5 @@
 {
-  "total_tools": 29,
+  "total_tools": 42,
   "tools": [
     {
       "name": "arxiv_search",
@@ -90,6 +90,91 @@
       "env_vars": [
         "BRAVE_SEARCH_API_KEY"
       ]
+    },
+    {
+      "name": "chromadb_vector_query",
+      "display_name": "ChromaDB Vector Store Query",
+      "description": "Runs read-only semantic similarity searches against a local persistent ChromaDB vector database. Accepts either natural-language text or a pre-computed embedding vector, supports metadata and document-content filters, and returns ranked matches with documents, metadata, raw distances and a normalised similarity score where higher is better.",
+      "category": "Database",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "Ammar Khan",
+        "github": "ammarhere02"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Natural-language search text, embedded using the collection's own embedding function"
+          },
+          "collection": {
+            "type": "string",
+            "description": "Name of the Chroma collection to search"
+          },
+          "db_path": {
+            "type": "string",
+            "description": "Path to the persistent Chroma database directory",
+            "default": "./chroma_db"
+          },
+          "n_results": {
+            "type": "integer",
+            "description": "Number of matches to return (1-100)",
+            "default": 5
+          },
+          "query_embedding": {
+            "type": "array",
+            "description": "Pre-computed embedding vector. Use instead of 'query' when embeddings are generated externally; avoids loading an embedding model",
+            "items": {
+              "type": "number"
+            }
+          },
+          "where": {
+            "type": "object",
+            "description": "Metadata filter, e.g. {\"source\": \"docs\"}"
+          },
+          "where_document": {
+            "type": "object",
+            "description": "Document content filter, e.g. {\"$contains\": \"invoice\"}"
+          }
+        },
+        "required": [
+          "collection"
+        ]
+      },
+      "env_vars": []
+    },
+    {
+      "name": "crewai_wrapper_demo",
+      "display_name": "CrewAI Wrapper Demo",
+      "description": "Adapts any tool in this hub into a CrewAI tool automatically, generating a Pydantic args_schema from the tool's metadata.json and calling its run_tool(). Wraps a single tool or the entire catalogue, and reports what CrewAI tool a given hub tool would produce.",
+      "category": "Documentation",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "Ammar Khan",
+        "github": "ammarhere02"
+      },
+      "version": "1.0.0",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "tool_name": {
+            "type": "string",
+            "description": "Folder name of the hub tool to inspect, e.g. 'jwt_decoder'"
+          },
+          "tools_dir": {
+            "type": "string",
+            "description": "Path to the hub's tools directory",
+            "default": "tools"
+          }
+        },
+        "required": [
+          "tool_name"
+        ]
+      },
+      "env_vars": []
     },
     {
       "name": "crypto_price_checker",
@@ -228,6 +313,44 @@
           "webhookUrl",
           "message"
         ]
+      },
+      "env_vars": []
+    },
+    {
+      "name": "docker_container_status",
+      "display_name": "Docker Container Status Checker",
+      "description": "Queries the local Docker daemon and reports container status, healthcheck state, uptime, restart count, published ports and live resource statistics including CPU percentage, real memory usage, network and block I/O, and PID count. Read-only: never starts, stops or removes containers.",
+      "category": "Developer Tools",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "Ammar Khan",
+        "github": "ammarhere02"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "container": {
+            "type": "string",
+            "description": "Name or ID of a single container to inspect. Omit to report all containers."
+          },
+          "all_containers": {
+            "type": "boolean",
+            "description": "Include stopped containers as well as running ones",
+            "default": false
+          },
+          "include_stats": {
+            "type": "boolean",
+            "description": "Collect CPU, memory, network and I/O statistics for running containers",
+            "default": true
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of containers to report (1-200)",
+            "default": 25
+          }
+        },
+        "required": []
       },
       "env_vars": []
     },
@@ -388,6 +511,61 @@
       ]
     },
     {
+      "name": "github_pr_code_review_diff_ts",
+      "display_name": "GitHub PR Code Review Diff Tool (TypeScript)",
+      "description": "Fetches changed files and patch details for an open GitHub pull request for automated code review workflows.",
+      "category": "Developer Tools",
+      "language": "typescript",
+      "mcp_compatible": true,
+      "author": {
+        "name": "Assessment Candidate",
+        "github": "assessment-candidate"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "pull_request_url": {
+            "type": "string",
+            "description": "Full GitHub pull request URL, for example https://github.com/owner/repo/pull/123"
+          },
+          "owner": {
+            "type": "string",
+            "description": "GitHub repository owner. Use with repo and pull_number when pull_request_url is omitted."
+          },
+          "repo": {
+            "type": "string",
+            "description": "GitHub repository name. Use with owner and pull_number when pull_request_url is omitted."
+          },
+          "pull_number": {
+            "type": "integer",
+            "description": "GitHub pull request number. Use with owner and repo when pull_request_url is omitted."
+          },
+          "token": {
+            "type": "string",
+            "description": "Optional GitHub token. Reads GITHUB_TOKEN from the environment when omitted."
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "pull_request_url"
+            ]
+          },
+          {
+            "required": [
+              "owner",
+              "repo",
+              "pull_number"
+            ]
+          }
+        ],
+        "additionalProperties": false
+      },
+      "env_vars": [
+        "GITHUB_TOKEN"
+      ]
+    },
+    {
       "name": "github_pr_diff",
       "display_name": "GitHub PR Code Review Diff Tool (TypeScript)",
       "description": "Fetch diff files and patch details for any GitHub pull request to enable automated AI code reviews. Also retrieves review comments.",
@@ -542,6 +720,48 @@
       ]
     },
     {
+      "name": "github_repo_stats_ts",
+      "display_name": "GitHub Repository Stats & Releases (TypeScript)",
+      "description": "Fetches public GitHub repository statistics (stars, forks, watchers, open issues, license, topics, last push) together with recent release history including tags, publish dates, asset counts and total download counts. Uses the public GitHub REST API, no API key required (an optional GITHUB_TOKEN raises the rate limit from 60 to 5,000 requests/hour). TypeScript implementation.",
+      "category": "Developer Tools",
+      "language": "typescript",
+      "mcp_compatible": true,
+      "author": {
+        "name": "Ammar Khan",
+        "github": "ammarhere02"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "repo": {
+            "type": "string",
+            "description": "Repository in 'owner/repo' format, e.g. 'tarunjandra/agent-tools-mcp-hub'. A full GitHub URL is also accepted."
+          },
+          "action": {
+            "type": "string",
+            "description": "Which data to return: 'stats' for repository metrics, 'releases' for release history, 'all' for both",
+            "enum": [
+              "stats",
+              "releases",
+              "all"
+            ],
+            "default": "all"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of releases to return (1-30, default 5)",
+            "default": 5
+          }
+        },
+        "required": [
+          "repo"
+        ]
+      },
+      "env_vars": [
+        "GITHUB_TOKEN"
+      ]
+    },
+    {
       "name": "google_custom_search",
       "display_name": "Google Custom Search",
       "description": "Searches the web via Google's Custom Search JSON API and returns the top matching links with titles and snippets.",
@@ -661,6 +881,35 @@
       "env_vars": []
     },
     {
+      "name": "jira_ticket_status_fetcher",
+      "display_name": "Jira Ticket Status Fetcher",
+      "description": "Fetch the status, summary, and description of a Jira ticket using the Jira Cloud REST API.",
+      "category": "Developer Tools",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "ImpactEngineer87",
+        "github": "ImpactEngineer87"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Jira issue key, for example PROJ-123"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "env_vars": [
+        "JIRA_BASE_URL",
+        "JIRA_EMAIL",
+        "JIRA_API_TOKEN"
+      ]
+    },
+    {
       "name": "jwt_decoder",
       "display_name": "JWT / Base64 Token Decoder",
       "description": "Decodes JSON Web Tokens (JWT) and Base64Url strings to inspect header, payload claims, and expiration status without requiring private keys.",
@@ -768,6 +1017,90 @@
       "env_vars": []
     },
     {
+      "name": "postgres_query_runner",
+      "display_name": "PostgreSQL Read-Only Query Tool",
+      "description": "Execute parameterized, read-only SQL queries against a PostgreSQL database using psycopg2, with query validation, session-level read-only enforcement, and structured tabular results.",
+      "category": "database",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "Dobrivoje",
+        "github": "dobrivoje0101"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "SQL query to execute. Must start with SELECT, WITH, EXPLAIN, SHOW, or TABLE"
+          },
+          "params": {
+            "type": "array",
+            "description": "Optional list of positional parameters for parameterized SQL execution",
+            "items": {}
+          },
+          "connection_string": {
+            "type": "string",
+            "description": "Optional PostgreSQL DSN/connection string. Falls back to POSTGRES_DSN, DATABASE_URL, or POSTGRES_HOST/PORT/DB/USER/PASSWORD environment variables"
+          },
+          "max_rows": {
+            "type": "integer",
+            "description": "Maximum number of rows to return (default: 100)"
+          },
+          "statement_timeout_ms": {
+            "type": "integer",
+            "description": "Server-side statement timeout in milliseconds (default: 5000)"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "returns": {
+        "type": "object",
+        "description": "Query execution result containing columns, rows as key-value objects, row_count, execution_time_ms, and status"
+      },
+      "env_vars": [
+        "POSTGRES_DSN",
+        "DATABASE_URL",
+        "POSTGRES_HOST",
+        "POSTGRES_PORT",
+        "POSTGRES_DB",
+        "POSTGRES_USER",
+        "POSTGRES_PASSWORD"
+      ]
+    },
+    {
+      "name": "public_holiday_lookup",
+      "display_name": "Public Holiday Lookup",
+      "description": "Retrieves public holiday dates for an ISO country code and calendar year using the free Nager.Date API.",
+      "category": "Utilities",
+      "language": "python",
+      "mcp_compatible": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "country_code": {
+            "type": "string",
+            "description": "Two-letter ISO 3166-1 alpha-2 country code, such as US or CA."
+          },
+          "year": {
+            "type": "integer",
+            "description": "Calendar year to query. Defaults to the current year."
+          },
+          "include_subdivisions": {
+            "type": "boolean",
+            "description": "Include ISO 3166-2 subdivision codes when the holiday applies only to part of a country.",
+            "default": true
+          }
+        },
+        "required": [
+          "country_code"
+        ]
+      },
+      "env_vars": []
+    },
+    {
       "name": "qr_code_generator",
       "display_name": "QR Code Generator",
       "description": "Generates QR code images from URLs or text strings and returns them as base64-encoded PNG data. Supports configurable size and error correction levels.",
@@ -809,6 +1142,54 @@
       "env_vars": []
     },
     {
+      "name": "redis_key_value_store",
+      "display_name": "Redis Key-Value Store",
+      "description": "Get and set cached values in a Redis instance with optional TTL expiration.",
+      "category": "Database",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "ImpactEngineer87",
+        "github": "ImpactEngineer87"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Redis key"
+          },
+          "action": {
+            "type": "string",
+            "description": "Redis operation to perform: get or set",
+            "enum": [
+              "get",
+              "set"
+            ],
+            "default": "get"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value to store when action is set"
+          },
+          "ttl": {
+            "type": "integer",
+            "description": "Optional expiration time in seconds when action is set"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "env_vars": [
+        "REDIS_HOST",
+        "REDIS_PORT",
+        "REDIS_PASSWORD",
+        "REDIS_DB",
+        "REDIS_SSL"
+      ]
+    },
+    {
       "name": "rss_feed_reader",
       "display_name": "RSS / Atom Feed Reader",
       "description": "Parses any RSS or Atom feed URL and returns the latest articles with titles, links, summaries, and publish dates. No API key required.",
@@ -837,6 +1218,49 @@
         ]
       },
       "env_vars": []
+    },
+    {
+      "name": "sendgrid_email_dispatcher",
+      "display_name": "SendGrid Email Dispatcher",
+      "description": "Send plain-text or HTML emails to recipients using the SendGrid API.",
+      "category": "Communication",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "ImpactEngineer87",
+        "github": "ImpactEngineer87"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Plain-text or HTML email body content"
+          },
+          "to_email": {
+            "type": "string",
+            "description": "Recipient email address"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Email subject"
+          },
+          "html": {
+            "type": "boolean",
+            "description": "Send the body as HTML when true; plain text when false",
+            "default": false
+          }
+        },
+        "required": [
+          "query",
+          "to_email",
+          "subject"
+        ]
+      },
+      "env_vars": [
+        "SENDGRID_API_KEY",
+        "SENDGRID_FROM_EMAIL"
+      ]
     },
     {
       "name": "slack_notifier",
@@ -939,6 +1363,13 @@
           "max_rows": {
             "type": "integer",
             "description": "Maximum number of rows to return (default: 100)"
+          },
+          "allowed_roots": {
+            "type": "array",
+            "description": "Optional directory allowlist for database_path containment. Defaults to SQLITE_ALLOWED_ROOTS or the process cwd.",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
@@ -946,6 +1377,9 @@
           "query"
         ]
       },
+      "env_vars": [
+        "SQLITE_ALLOWED_ROOTS"
+      ],
       "returns": {
         "type": "object",
         "description": "Query execution result containing columns, rows as key-value objects, row_count, execution_time_ms, and status"
@@ -1107,6 +1541,117 @@
       "env_vars": [
         "TELEGRAM_BOT_TOKEN",
         "TELEGRAM_CHAT_ID"
+      ]
+    },
+    {
+      "name": "trello_card_creator",
+      "display_name": "Trello Card Creator",
+      "description": "Create task cards in specified Trello lists using the Trello REST API.",
+      "category": "Developer Tools",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "ImpactEngineer87",
+        "github": "ImpactEngineer87"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Title or name of the Trello card"
+          },
+          "list_id": {
+            "type": "string",
+            "description": "ID of the Trello list where the card should be created"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description for the Trello card",
+            "default": ""
+          }
+        },
+        "required": [
+          "query",
+          "list_id"
+        ]
+      },
+      "env_vars": [
+        "TRELLO_API_KEY",
+        "TRELLO_TOKEN"
+      ]
+    },
+    {
+      "name": "twilio_sms_alert",
+      "display_name": "Twilio SMS Alert",
+      "description": "Sends critical SMS alert notifications via the Twilio Programmable Messaging API for agent workflows.",
+      "category": "Communication",
+      "language": "python",
+      "mcp_compatible": true,
+      "author": {
+        "name": "ricardo4453",
+        "github": "ricardo4453"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "SMS body text to send (max 1600 characters)"
+          },
+          "to": {
+            "type": "string",
+            "description": "Destination phone number in E.164 format (e.g. +15551234567). Reads TWILIO_TO_NUMBER if omitted."
+          },
+          "from": {
+            "type": "string",
+            "description": "Twilio sender phone number in E.164 format. Reads TWILIO_FROM_NUMBER if omitted."
+          },
+          "account_sid": {
+            "type": "string",
+            "description": "Twilio Account SID. Reads TWILIO_ACCOUNT_SID if omitted."
+          },
+          "auth_token": {
+            "type": "string",
+            "description": "Twilio Auth Token. Reads TWILIO_AUTH_TOKEN if omitted."
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "env_vars": [
+        "TWILIO_ACCOUNT_SID",
+        "TWILIO_AUTH_TOKEN",
+        "TWILIO_FROM_NUMBER",
+        "TWILIO_TO_NUMBER"
+      ]
+    },
+    {
+      "name": "twitter_x_post_creator_ts",
+      "display_name": "Twitter / X Post Creator",
+      "description": "Create automated text posts using the X API v2.",
+      "category": "Communication",
+      "language": "typescript",
+      "mcp_compatible": true,
+      "author": {
+        "name": "ImpactEngineer87",
+        "github": "ImpactEngineer87"
+      },
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Text content of the X post"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "env_vars": [
+        "X_USER_ACCESS_TOKEN"
       ]
     },
     {

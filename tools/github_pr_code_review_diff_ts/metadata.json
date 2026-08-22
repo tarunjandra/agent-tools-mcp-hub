@@ -1,0 +1,49 @@
+{
+  "name": "github_pr_code_review_diff_ts",
+  "display_name": "GitHub PR Code Review Diff Tool (TypeScript)",
+  "description": "Fetches changed files and patch details for an open GitHub pull request for automated code review workflows.",
+  "category": "Developer Tools",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": {
+    "name": "Assessment Candidate",
+    "github": "assessment-candidate"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "pull_request_url": {
+        "type": "string",
+        "description": "Full GitHub pull request URL, for example https://github.com/owner/repo/pull/123"
+      },
+      "owner": {
+        "type": "string",
+        "description": "GitHub repository owner. Use with repo and pull_number when pull_request_url is omitted."
+      },
+      "repo": {
+        "type": "string",
+        "description": "GitHub repository name. Use with owner and pull_number when pull_request_url is omitted."
+      },
+      "pull_number": {
+        "type": "integer",
+        "description": "GitHub pull request number. Use with owner and repo when pull_request_url is omitted."
+      },
+      "token": {
+        "type": "string",
+        "description": "Optional GitHub token. Reads GITHUB_TOKEN from the environment when omitted."
+      }
+    },
+    "anyOf": [
+      {
+        "required": ["pull_request_url"]
+      },
+      {
+        "required": ["owner", "repo", "pull_number"]
+      }
+    ],
+    "additionalProperties": false
+  },
+  "env_vars": [
+    "GITHUB_TOKEN"
+  ]
+}

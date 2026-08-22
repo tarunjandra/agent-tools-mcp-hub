@@ -1,0 +1,44 @@
+{
+  "name": "twilio_sms_alert",
+  "display_name": "Twilio SMS Alert",
+  "description": "Sends critical SMS alert notifications via the Twilio Programmable Messaging API for agent workflows.",
+  "category": "Communication",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "ricardo4453",
+    "github": "ricardo4453"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "string",
+        "description": "SMS body text to send (max 1600 characters)"
+      },
+      "to": {
+        "type": "string",
+        "description": "Destination phone number in E.164 format (e.g. +15551234567). Reads TWILIO_TO_NUMBER if omitted."
+      },
+      "from": {
+        "type": "string",
+        "description": "Twilio sender phone number in E.164 format. Reads TWILIO_FROM_NUMBER if omitted."
+      },
+      "account_sid": {
+        "type": "string",
+        "description": "Twilio Account SID. Reads TWILIO_ACCOUNT_SID if omitted."
+      },
+      "auth_token": {
+        "type": "string",
+        "description": "Twilio Auth Token. Reads TWILIO_AUTH_TOKEN if omitted."
+      }
+    },
+    "required": ["message"]
+  },
+  "env_vars": [
+    "TWILIO_ACCOUNT_SID",
+    "TWILIO_AUTH_TOKEN",
+    "TWILIO_FROM_NUMBER",
+    "TWILIO_TO_NUMBER"
+  ]
+}

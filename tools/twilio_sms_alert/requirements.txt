@@ -1,0 +1,1 @@
+# No external dependencies required (uses Python standard library: urllib, json, os, base64)

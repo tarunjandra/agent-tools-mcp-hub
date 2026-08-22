@@ -1,0 +1,24 @@
+{
+  "name": "github-pr-code-review-diff-ts",
+  "version": "1.0.0",
+  "description": "GitHub PR Code Review Diff Tool - TypeScript",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node index.ts"
+  },
+  "keywords": [
+    "github",
+    "pull-request",
+    "code-review",
+    "typescript",
+    "mcp"
+  ],
+  "author": "Assessment Candidate",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}

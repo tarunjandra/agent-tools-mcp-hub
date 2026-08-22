@@ -1,0 +1,34 @@
+{
+  "name": "github_repo_stats_ts",
+  "display_name": "GitHub Repository Stats & Releases (TypeScript)",
+  "description": "Fetches public GitHub repository statistics (stars, forks, watchers, open issues, license, topics, last push) together with recent release history including tags, publish dates, asset counts and total download counts. Uses the public GitHub REST API, no API key required (an optional GITHUB_TOKEN raises the rate limit from 60 to 5,000 requests/hour). TypeScript implementation.",
+  "category": "Developer Tools",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": {
+    "name": "Ammar Khan",
+    "github": "ammarhere02"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "repo": {
+        "type": "string",
+        "description": "Repository in 'owner/repo' format, e.g. 'tarunjandra/agent-tools-mcp-hub'. A full GitHub URL is also accepted."
+      },
+      "action": {
+        "type": "string",
+        "description": "Which data to return: 'stats' for repository metrics, 'releases' for release history, 'all' for both",
+        "enum": ["stats", "releases", "all"],
+        "default": "all"
+      },
+      "limit": {
+        "type": "integer",
+        "description": "Number of releases to return (1-30, default 5)",
+        "default": 5
+      }
+    },
+    "required": ["repo"]
+  },
+  "env_vars": ["GITHUB_TOKEN"]
+}

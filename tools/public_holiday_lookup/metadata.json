@@ -1,0 +1,28 @@
+{
+  "name": "public_holiday_lookup",
+  "display_name": "Public Holiday Lookup",
+  "description": "Retrieves public holiday dates for an ISO country code and calendar year using the free Nager.Date API.",
+  "category": "Utilities",
+  "language": "python",
+  "mcp_compatible": true,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "country_code": {
+        "type": "string",
+        "description": "Two-letter ISO 3166-1 alpha-2 country code, such as US or CA."
+      },
+      "year": {
+        "type": "integer",
+        "description": "Calendar year to query. Defaults to the current year."
+      },
+      "include_subdivisions": {
+        "type": "boolean",
+        "description": "Include ISO 3166-2 subdivision codes when the holiday applies only to part of a country.",
+        "default": true
+      }
+    },
+    "required": ["country_code"]
+  },
+  "env_vars": []
+}

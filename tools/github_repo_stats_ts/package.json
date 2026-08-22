@@ -1,0 +1,26 @@
+{
+  "name": "github-repo-stats-ts",
+  "version": "1.0.0",
+  "description": "GitHub Repository Stats & Releases - TypeScript Implementation",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node index.ts",
+    "dist": "node dist/index.js"
+  },
+  "keywords": [
+    "github",
+    "releases",
+    "repository-stats",
+    "api",
+    "typescript",
+    "mcp"
+  ],
+  "author": "Ammar Khan",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}

@@ -28,10 +28,18 @@
       "max_rows": {
         "type": "integer",
         "description": "Maximum number of rows to return (default: 100)"
+      },
+      "allowed_roots": {
+        "type": "array",
+        "description": "Optional directory allowlist for database_path containment. Defaults to SQLITE_ALLOWED_ROOTS or the process cwd.",
+        "items": {
+          "type": "string"
+        }
       }
     },
     "required": ["database_path", "query"]
   },
+  "env_vars": ["SQLITE_ALLOWED_ROOTS"],
   "returns": {
     "type": "object",
     "description": "Query execution result containing columns, rows as key-value objects, row_count, execution_time_ms, and status"

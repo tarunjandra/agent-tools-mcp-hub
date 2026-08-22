@@ -1,0 +1,43 @@
+{
+  "name": "sendgrid_email_dispatcher",
+  "display_name": "SendGrid Email Dispatcher",
+  "description": "Send plain-text or HTML emails to recipients using the SendGrid API.",
+  "category": "Communication",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "ImpactEngineer87",
+    "github": "ImpactEngineer87"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Plain-text or HTML email body content"
+      },
+      "to_email": {
+        "type": "string",
+        "description": "Recipient email address"
+      },
+      "subject": {
+        "type": "string",
+        "description": "Email subject"
+      },
+      "html": {
+        "type": "boolean",
+        "description": "Send the body as HTML when true; plain text when false",
+        "default": false
+      }
+    },
+    "required": [
+      "query",
+      "to_email",
+      "subject"
+    ]
+  },
+  "env_vars": [
+    "SENDGRID_API_KEY",
+    "SENDGRID_FROM_EMAIL"
+  ]
+}
