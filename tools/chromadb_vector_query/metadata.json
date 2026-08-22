@@ -1,0 +1,52 @@
+{
+  "name": "chromadb_vector_query",
+  "display_name": "ChromaDB Vector Store Query",
+  "description": "Run semantic-similarity (nearest-neighbour) searches against a local, on-disk Chroma vector database. Query by a raw embedding vector or by natural-language text, with optional metadata and document-content filters, and receive structured matches with documents, metadata, and distances.",
+  "category": "database",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "Your Name / GitHub Handle",
+    "github": "your-github-username"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "persist_directory": {
+        "type": "string",
+        "description": "Path to the on-disk Chroma database directory (created by chromadb.PersistentClient)"
+      },
+      "collection_name": {
+        "type": "string",
+        "description": "Name of the Chroma collection to query"
+      },
+      "query_text": {
+        "type": "string",
+        "description": "Natural-language query. Requires the collection to have an embedding function (Chroma's default downloads a model on first use)"
+      },
+      "query_embedding": {
+        "type": "array",
+        "description": "Raw query vector (list of floats). Takes precedence over query_text and requires no embedding model",
+        "items": { "type": "number" }
+      },
+      "n_results": {
+        "type": "integer",
+        "description": "Maximum number of matches to return (default: 5)"
+      },
+      "where": {
+        "type": "object",
+        "description": "Optional metadata filter, e.g. {\"source\": \"docs\"}"
+      },
+      "where_document": {
+        "type": "object",
+        "description": "Optional document-content filter, e.g. {\"$contains\": \"gpu\"}"
+      }
+    },
+    "required": ["persist_directory", "collection_name"]
+  },
+  "returns": {
+    "type": "object",
+    "description": "Query result containing status, collection, query_type, matches (id, document, metadata, distance), match_count, and execution_time_ms"
+  },
+  "env_vars": []
+}
