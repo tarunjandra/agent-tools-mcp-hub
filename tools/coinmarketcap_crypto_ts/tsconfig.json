@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    // "rootDir": "./",
+    // "outDir": "./dist",
+
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "es2022",
+    "types": ["node"],
+    "lib": ["es2022"],
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Recommended Options
+    "strict": true,
+    "jsx": "react-jsx",
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+  }
+}

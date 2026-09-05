@@ -1,0 +1,24 @@
+{
+  "name": "coinmarketcap-crypto-ts",
+  "version": "1.0.0",
+  "description": "Fetches top cryptocurrency listings from CoinMarketCap API and ranks them by market cap, 24h trading volume, or price change over various periods.",
+  "license": "MIT",
+  "author": "Jonathan Sherrell",
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "start": "npm run demo",
+    "demo": "tsx tool/demo.ts",
+    "fmt": "oxfmt"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "@types/prompts": "^2.4.9",
+    "oxfmt": "^0.66.0",
+    "prompts": "^2.4.2",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
