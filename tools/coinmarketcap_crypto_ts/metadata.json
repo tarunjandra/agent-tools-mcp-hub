@@ -1,0 +1,52 @@
+{
+  "name": "coinmarketcap_crypto_ts",
+  "display_name": "CoinMarketCap Top Crypto & Market Cap Explorer (TypeScript)",
+  "description": "Fetches top cryptocurrency listings from CoinMarketCap. An API key can be supplied via the CMC_API_KEY environment variable, otherwise the public endpoint will be used (the API is the same). Output currency is configurable, and results can be sorted by market cap (default), price, price change (1h, 24h, 7d, 30d, 60d, 90d), and 24-hour trading volume.",
+  "category": "Finance",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": { "name": "John Sherrell", "github": "ohnsh" },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": ["rankAssets", "listCurrencies"],
+        "default": "rankAssets",
+        "description": "The top-level call to dispatch. `rankAssets` is the primary action that returns crypto asset listings. `listCurrencies` is a helper action that lists the currencies supported by the `currency` option to `rankAssets`."
+      },
+      "limit": {
+        "type": "number",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 100,
+        "description": "The number of assets to fetch from CoinMarketCap."
+      },
+      "currency": {
+        "type": "string",
+        "default": "USD",
+        "description": "The currency used in the results. The `listCurrencies` action returns a list of currency symbols supported by CoinMarketCap."
+      },
+      "rankBy": {
+        "type": "string",
+        "enum": [
+          "market_cap",
+          "name",
+          "symbol",
+          "price",
+          "volume_24h",
+          "percent_change_1h",
+          "percent_change_24h",
+          "percent_change_7d",
+          "percent_change_30d",
+          "percent_change_60d",
+          "percent_change_90d"
+        ],
+        "default": "market_cap",
+        "description": "The metric used to rank assets returned by `rankAssets`."
+      }
+    },
+    "required": []
+  },
+  "env_vars": ["CMC_API_KEY"]
+}
