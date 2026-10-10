@@ -1,0 +1,7 @@
+{
+  "name": "linear-issue-creator-ts",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": { "build": "tsc --noEmit", "start": "ts-node index.ts", "test": "node --test --import ts-node/register index.test.ts" },
+  "devDependencies": { "@types/node": "^20.0.0", "ts-node": "^10.9.0", "typescript": "^5.0.0" }
+}
