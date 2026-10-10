@@ -1,0 +1,28 @@
+{
+  "name": "binance_spot_ticker_ts",
+  "display_name": "Binance Spot Ticker & Order Book (TypeScript)",
+  "description": "Fetches real-time 24h price statistics, L2 order-book depth (bids/asks) and recent trades for any Binance spot pair, using the public REST API that needs no API key.",
+  "category": "Finance",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": {
+    "name": "TianHeng Zhuang",
+    "github": "TianHengZhuang"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "symbol": {
+        "type": "string",
+        "description": "Binance spot pair, e.g. BTCUSDT or ETHUSDT. BTC/USDT and btc-usdt are accepted and normalised."
+      },
+      "limit": {
+        "type": "integer",
+        "description": "Order-book levels and recent trades to return per side, 1-100.",
+        "default": 10
+      }
+    },
+    "required": ["symbol"]
+  },
+  "env_vars": []
+}
