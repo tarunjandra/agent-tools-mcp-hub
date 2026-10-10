@@ -1,0 +1,49 @@
+{
+  "name": "airtable_record_appender",
+  "display_name": "Airtable Record Appender",
+  "description": "Appends one or more records to an Airtable base through the Airtable Web API, batching around the 10-record request limit and returning the created record ids.",
+  "category": "Database",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "TianHeng Zhuang",
+    "github": "TianHengZhuang"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "base_id": {
+        "type": "string",
+        "description": "Airtable base id, e.g. appXXXXXXXXXXXXXX."
+      },
+      "table": {
+        "type": "string",
+        "description": "Table name or table id, e.g. Leads."
+      },
+      "records": {
+        "type": "array",
+        "description": "Records to append: a list of field mappings such as [{\"Name\": \"Ada\"}], or the wrapped [{\"fields\": {...}}] form.",
+        "items": {
+          "type": "object"
+        }
+      },
+      "token": {
+        "type": "string",
+        "description": "Airtable personal access token; falls back to the AIRTABLE_API_KEY environment variable."
+      },
+      "typecast": {
+        "type": "boolean",
+        "description": "Let Airtable coerce values that do not match the field type.",
+        "default": false
+      }
+    },
+    "required": [
+      "base_id",
+      "table",
+      "records"
+    ]
+  },
+  "env_vars": [
+    "AIRTABLE_API_KEY"
+  ]
+}
