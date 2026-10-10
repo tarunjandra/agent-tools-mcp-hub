@@ -1,0 +1,24 @@
+{
+  "name": "coingecko_trending_ts",
+  "display_name": "CoinGecko Trending Coins & Global Market Stats (TypeScript)",
+  "description": "Fetches the coins trending in CoinGecko searches, plus global crypto market cap, 24h volume and BTC/ETH dominance, using the free public CoinGecko API that needs no key.",
+  "category": "Finance",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": {
+    "name": "TianHeng Zhuang",
+    "github": "TianHengZhuang"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "limit": {
+        "type": "integer",
+        "description": "How many trending coins to return, 1-50.",
+        "default": 10
+      }
+    },
+    "required": []
+  },
+  "env_vars": []
+}
