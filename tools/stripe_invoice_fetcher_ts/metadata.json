@@ -1,0 +1,42 @@
+{
+  "name": "stripe_invoice_fetcher_ts",
+  "display_name": "Stripe Invoice Fetcher (TypeScript)",
+  "description": "Fetches Stripe invoices and their payment status, either one invoice by id or a filtered list for a customer, converting amounts out of Stripe's smallest currency unit.",
+  "category": "Finance",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": {
+    "name": "TianHeng Zhuang",
+    "github": "TianHengZhuang"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "invoice": {
+        "type": "string",
+        "description": "A specific invoice id (in_...). Takes precedence over customer."
+      },
+      "customer": {
+        "type": "string",
+        "description": "Customer id (cus_...) to list that customer's invoices."
+      },
+      "status": {
+        "type": "string",
+        "description": "draft, open, paid, uncollectible or void."
+      },
+      "limit": {
+        "type": "integer",
+        "description": "Invoices to return, 1-100.",
+        "default": 10
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Stripe secret key; falls back to the STRIPE_SECRET_KEY environment variable."
+      }
+    },
+    "required": []
+  },
+  "env_vars": [
+    "STRIPE_SECRET_KEY"
+  ]
+}
