@@ -1,0 +1,44 @@
+{
+  "name": "linear_issue_creator_ts",
+  "display_name": "Linear Issue Creator (TypeScript)",
+  "description": "Creates a Linear issue on a chosen team through the Linear GraphQL API, resolving the team by key or name first and mapping a readable priority onto Linear's numeric scale.",
+  "category": "Productivity",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": {
+    "name": "TianHeng Zhuang",
+    "github": "TianHengZhuang"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "team": {
+        "type": "string",
+        "description": "Team key (ENG) or exact name (Engineering)."
+      },
+      "title": {
+        "type": "string",
+        "description": "Issue title, 255 characters or fewer."
+      },
+      "description": {
+        "type": "string",
+        "description": "Optional markdown body for the issue."
+      },
+      "priority": {
+        "type": "string",
+        "description": "none, urgent, high, medium or low, or an integer 0-4."
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Linear personal API key; falls back to the LINEAR_API_KEY environment variable."
+      }
+    },
+    "required": [
+      "team",
+      "title"
+    ]
+  },
+  "env_vars": [
+    "LINEAR_API_KEY"
+  ]
+}
