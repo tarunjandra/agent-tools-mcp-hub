@@ -1,0 +1,27 @@
+{
+  "name": "polygon_stock_quote_ts",
+  "display_name": "Polygon.io Real-Time Stock Quote (TypeScript)",
+  "description": "Fetches a snapshot quote for a US equity or forex pair from Polygon.io: current price, today's change and percentage, the day's OHLC, volume and the previous close.",
+  "category": "Finance",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": {
+    "name": "TianHeng Zhuang",
+    "github": "TianHengZhuang"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "ticker": {
+        "type": "string",
+        "description": "US equity (AAPL, MSFT) or forex pair (C:EURUSD, or a bare EURUSD, which is prefixed for you)."
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Polygon.io API key; falls back to the POLYGON_API_KEY environment variable."
+      }
+    },
+    "required": ["ticker"]
+  },
+  "env_vars": ["POLYGON_API_KEY"]
+}
