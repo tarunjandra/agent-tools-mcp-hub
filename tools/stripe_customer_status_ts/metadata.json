@@ -1,0 +1,36 @@
+{
+  "name": "stripe_customer_status_ts",
+  "display_name": "Stripe Customer & Payment Status Inspector (TypeScript)",
+  "description": "Inspects a Stripe customer: signed balance, delinquency flag, recent payment attempts and charges with their failure reasons, plus a one-line payment-health verdict.",
+  "category": "Finance",
+  "language": "typescript",
+  "mcp_compatible": true,
+  "author": {
+    "name": "TianHeng Zhuang",
+    "github": "TianHengZhuang"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "customer": {
+        "type": "string",
+        "description": "Customer id (cus_...)."
+      },
+      "limit": {
+        "type": "integer",
+        "description": "Payment attempts and charges to return, 1-100.",
+        "default": 10
+      },
+      "apiKey": {
+        "type": "string",
+        "description": "Stripe secret key; falls back to the STRIPE_SECRET_KEY environment variable."
+      }
+    },
+    "required": [
+      "customer"
+    ]
+  },
+  "env_vars": [
+    "STRIPE_SECRET_KEY"
+  ]
+}
