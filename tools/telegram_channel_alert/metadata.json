@@ -1,0 +1,57 @@
+{
+  "name": "telegram_channel_alert",
+  "display_name": "Telegram Channel Alert Dispatcher",
+  "description": "Posts formatted text and photo alerts to a Telegram group or channel, splitting messages around the 4096 character limit and handling the smaller 1024 character caption limit, with severity badges.",
+  "category": "Notifications",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "TianHeng Zhuang",
+    "github": "TianHengZhuang"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "chat_id": {
+        "type": "string",
+        "description": "Channel or group: @username, a bare username, or the numeric id (channels usually look like -100XXXXXXXXXX)."
+      },
+      "message": {
+        "type": "string",
+        "description": "Alert text; split automatically past 4096 characters."
+      },
+      "photo_url": {
+        "type": "string",
+        "description": "Optional image URL; when set the alert posts as a photo with the caption."
+      },
+      "photo_caption": {
+        "type": "string",
+        "description": "Caption for the photo; falls back to message."
+      },
+      "severity": {
+        "type": "string",
+        "description": "info, warning or critical, prefixed as a badge."
+      },
+      "parse_mode": {
+        "type": "string",
+        "description": "HTML (default), MarkdownV2, Markdown, or omitted for plain text.",
+        "default": "HTML"
+      },
+      "bot_token": {
+        "type": "string",
+        "description": "Bot token; falls back to the TELEGRAM_BOT_TOKEN environment variable."
+      },
+      "disable_notification": {
+        "type": "boolean",
+        "description": "Send silently, for off-hours alerts.",
+        "default": false
+      }
+    },
+    "required": [
+      "chat_id"
+    ]
+  },
+  "env_vars": [
+    "TELEGRAM_BOT_TOKEN"
+  ]
+}
