@@ -51,7 +51,7 @@ Building AI agents requires connecting them to real-world APIs, tools, and datab
 | [`jira_ticket_status_fetcher`](tools/jira_ticket_status_fetcher/) | Developer Tools | Python | ✅ | Fetch the status, summary, and description of a Jira ticket using the Jira Cloud REST API. |
 | [`trello_card_creator`](tools/trello_card_creator/) | Developer Tools | Python | ✅ | Create task cards in specified Trello lists using the Trello REST API. |
 | [`docker_container_status`](tools/docker_container_status/) | Developer Tools | Python | ✅ | Queries the local Docker daemon and reports container status, health, and live resource statistics. |
-| [`spotify_player`](tools/spotify_player/) | Media | Python | ✅ | Fetch the currently playing track and the user's private/public playlists from Spotify. |
+| [`spotify_player`](tools/spotify_player/) | Media | Python | ✅ | Fetch the currently playing track or podcast episode, list the user's playlists, and get a playlist's details and tracks from Spotify. |
 | [`pdf_text_extractor`](tools/pdf_text_extractor/) | Utilities | Python | ✅ | Extract plain text from local PDF files using pypdf. |
 | [`public_holiday_lookup`](tools/public_holiday_lookup/) | Utilities | Python | ✅ | Retrieves public holiday dates for an ISO country code and calendar year using the free Nager.Date API. |
 | [`github_avatar_frame`](tools/github_avatar_frame/) | Utilities | Python | ✅ | Generates framed GitHub avatars with customizable shapes, sizes, themes, and emoji overlays. |

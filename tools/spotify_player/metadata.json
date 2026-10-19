@@ -1,7 +1,7 @@
 {
   "name": "spotify_player",
   "display_name": "Spotify Current Track & Playlists",
-  "description": "Fetch the currently playing track and the user's private/public playlists from Spotify.",
+  "description": "Fetch the currently playing track or podcast episode, list the user's playlists, and get a playlist's details and tracks from Spotify.",
   "category": "Media",
   "language": "python",
   "mcp_compatible": true,
@@ -14,16 +14,40 @@
     "properties": {
       "action": {
         "type": "string",
-        "description": "Action to perform: 'current_track' or 'playlists'",
+        "description": "Action to perform: 'current_track' (what is playing now), 'playlists' (the user's playlists) or 'playlist' (one playlist's details and tracks)",
         "enum": [
           "current_track",
-          "playlists"
+          "playlists",
+          "playlist"
         ]
+      },
+      "playlist_id": {
+        "type": "string",
+        "description": "Playlist ID, spotify:playlist: URI or open.spotify.com URL. Required when action is 'playlist'."
       },
       "limit": {
         "type": "integer",
-        "description": "Maximum number of playlists to return (default 10)",
-        "default": 10
+        "description": "Number of playlists ('playlists') or playlist tracks ('playlist') to return",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 50
+      },
+      "offset": {
+        "type": "integer",
+        "description": "Index of the first playlist or playlist track to return, for paging through results",
+        "default": 0,
+        "minimum": 0,
+        "maximum": 100000
+      },
+      "include_items": {
+        "type": "boolean",
+        "description": "For 'playlist': also fetch the playlist's tracks. Spotify only returns tracks for the user's own playlists.",
+        "default": true
+      },
+      "raw": {
+        "type": "boolean",
+        "description": "Return Spotify's full JSON response instead of a compact summary",
+        "default": false
       }
     },
     "required": [
@@ -31,6 +55,9 @@
     ]
   },
   "env_vars": [
-    "SPOTIFY_ACCESS_TOKEN"
+    "SPOTIFY_ACCESS_TOKEN",
+    "SPOTIFY_CLIENT_ID",
+    "SPOTIFY_CLIENT_SECRET",
+    "SPOTIFY_REFRESH_TOKEN"
   ]
 }
