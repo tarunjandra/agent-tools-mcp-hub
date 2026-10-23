@@ -1,0 +1,31 @@
+{
+  "name": "deed_page_publisher",
+  "display_name": "deed.page Publisher",
+  "description": "Publishes an HTML page to a live HTTPS URL at <slug>.deed.page with one HTTP PUT. No account or API key on the free plan; the returned token updates the same slug.",
+  "category": "Developer Tools",
+  "language": "python",
+  "mcp_compatible": true,
+  "author": {
+    "name": "deed.page team",
+    "github": "f-o-x11"
+  },
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "html": {
+        "type": "string",
+        "description": "Full HTML document to publish as index.html (max 4 MB)"
+      },
+      "slug": {
+        "type": "string",
+        "description": "Subdomain to publish to: lowercase letters, digits and hyphens"
+      },
+      "token": {
+        "type": "string",
+        "description": "Token returned by the first publish of this slug; required to update it (or set DEED_PAGE_TOKEN)"
+      }
+    },
+    "required": ["html", "slug"]
+  },
+  "env_vars": ["DEED_PAGE_TOKEN"]
+}
